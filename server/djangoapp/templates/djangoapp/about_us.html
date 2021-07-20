@@ -9,28 +9,55 @@
 <html>
     <body>
         <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Car Dealer</a>
-            </div>
-            <div class="collapse navbar-collapse">
+        <nav class="navbar navbar-expand-lg navbar-dark"
+        style="background:  linear-gradient(to right, #151a1c, #0d1e30);">
+            <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+               <ul class="navbar-nav mr-auto">
+                   <li class="nav-item">
+                       <a class="btn btn-link" href="{% url 'djangoapp:index' %}" style="color: #fff;">Home</a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="btn btn-link" href="{% url 'djangoapp:about_us' %}" style="color: #fff">About Us</a>
+                   </li>
+                   <li class="nav-item"></a>
+                       <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}" style="color: #fff">Contact Us</a>
+                   </li>
+               </ul>
+           </div>
+       </nav>
+        <br>
+        <div class="container-fluid">
+            <h1>
+            Welcome to Best Cars dealership, home to the best cars
+            in North America. We sell domestic and imported cars at reasonable prices.
+            </h1>
+        </div>      
+        <!-- FOOTER -->
+        <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark"
+        style="background:  linear-gradient(to right, #3f4a4edc, #203953ab);">
+            <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="btn btn-link" href="{% url 'djangoapp:index' %}">Home</a>
+                    <li class="nav-item">
+                        <a class="btn btn-link" href="{% url 'djangoapp:index' %}" style="color: #fff;">Home</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="btn btn-link" href="{% url 'djangoapp:about_us' %}">About Us</a>       
+                    <li class="nav-item">
+                        <a class="btn btn-link" href="{% url 'djangoapp:about_us' %}" style="color: #fff">About Us</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}">Contact Us</a>              
+                    <li class="nav-item"></a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}" style="color: #fff">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <br>      
-        <h1>
-        Welcome to Best Cars dealership, home to the best cars
-        in North America. We sell domestic and imported cars at reasonable prices.
-        </h1>
     </body>
 </html>
