@@ -29,12 +29,12 @@
                    </li>
                </ul>
                <ul class = "navbar-nav navbar-right">
-                    {% if user is authenticated %}
+                    {% if user.is_authenticated %}
                     <li>
-                        <a class = "btn btn-link" href = "#">{{ user.username }}</a>
+                        <a class = "btn btn-link" href = "#">({{ user.username }})</a>
                         <a class = "btn btn-link" href = "{% url 'djangoapp:logout' %}">Logout</a>
                     </li>
-                    {% endif %}
+                    {% else %}
                     <li>
                         <form class = "form-inline" action = "{% url 'djangoapp:login' %}" method = "post">
                             {% csrf_token %}
@@ -46,6 +46,7 @@
                             </div>
                         </form>
                     </li>
+                    {% endif %}
                </ul>
            </div>
        </nav>
