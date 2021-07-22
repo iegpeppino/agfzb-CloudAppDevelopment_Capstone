@@ -36,6 +36,25 @@
                        <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}" style="color: #fff">Contact Us</a>
                    </li>
                </ul>
+               <ul class = "navbar-nav navbar-right">
+                    {% if user is authenticated %}
+                    <li>
+                        <a class = "btn btn-link" href = "#">{{ user.username }}</a>
+                        <a class = "btn btn-link" href = "{% url 'djangoapp:logout' %}">Logout</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <form class = "form-inline" action = "{% url 'djangoapp:login' %}" method = "post">
+                            {% csrf_token %}
+                            <div class = "input-group">
+                                <input type = "text" class = "form-control" placeholder = "username" name = "username">
+                                <input type = "password" class = "form-control" placeholder = "password" name = "psw">
+                                <button class = "btn btn-primary" type = "submit">Login</button>
+                                <a class = "btn btn-link" href = "{% url 'djangoapp:registration' %}">Sign Up</a>
+                            </div>
+                        </form>
+                    </li>
+               </ul>
            </div>
        </nav>
         <br>
