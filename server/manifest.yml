@@ -1,13 +1,13 @@
   applications:
   - name: cardealer
     routes:
-      - route: host.domain
-      # peppinocardeals.mybluemix.net
+      - route: peppinocardeals.mybluemix.net
+      # host.domain
     memory: 128M
     buildpack: python_buildpack
   - name: cardealer-nginx
     routes:
-      - route: host.domain/static
-      # peppinocardeals.mybluemix.net/static
+      - route: peppinocardeals.mybluemix.net/static
+      # host.domain/static
     memory: 128M
     buildpack: staticfile_buildpack
