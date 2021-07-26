@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
-
+from django_countries.fields import CountryField
 
 # Create your models here.
 
@@ -9,7 +9,15 @@ from django.utils.timezone import now
 # - Description
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
+class CarMake(models.Model):
+    name = models.CharField(null = False, max_length = 20)
+    description = models.TextField(max_length=300)
+    country = CountryField()
 
+    def __str__(self):
+        return "Name: " + self.name + "," + \
+               "Description: " + self.description + "," + \
+                "Country:" + self.country
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
@@ -19,9 +27,31 @@ from django.utils.timezone import now
 # - Year (DateField)
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
+class CarModel(models.Model):
+    name = models.CharField(null= False, max_length= 20)
+    year = models.DateField()
+    dealer_id = models.IntegerField()
+    TYPE_CHOICES = [
+        ("sedan" , "Sedan"),
+        ("suv" , "SUV"),
+        ("wagon" , "Wagon"),
+        ("hatchback" , "Hatchback"),
+        ("pickup" , "Pickup"),
+        ]
+    type = models.CharField(
+        max_length= 20,
+        choices= TYPE_CHOICES,
+        default= 'sedan'
+    )
+    isused = models.BooleanField(default= False)
+    carmake = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    def __str__(self):
+        return "Name: " + self.name + "," + \
+               "Year: " + self.year + "," + \
+               "Type:" + self.type + "," + \
+                "Previously owned ?" + self.isused
 
-
-# <HINT> Create a plain Python class `CarDealer` to hold dealer data
+    # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
