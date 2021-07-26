@@ -65,7 +65,7 @@ class CarDealer:
         self.lat = lat
         self.long = long
     def __str__(self):
-        "Dealership: " + self.full_name
+        "Dealer name: " + self.full_name
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
 
