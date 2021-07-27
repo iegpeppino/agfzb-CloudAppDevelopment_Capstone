@@ -60,18 +60,36 @@
     <div class= "row">
         {% for review in reviews %}
             <div class= "col-sm-6">
-                <div class="card">
+            <br>
+            {% if review.sentiment == 'positive' %}
+                <div class="card text-white bg-success mb-3" style="max-width: 25rem; margin-left: 1rem;">
                     <div class="card-header">
-                        Featured
+                        Positive experience review by {{review.name}}
                     </div>
+            {% elif review.sentiment == 'negative' %}
+                <div class="card text-white bg-success mb-3" style="max-width: 25rem; margin-left: 1rem;">
+                    <div class="card-header">
+                        Negative experience review by {{review.name}}
+                    </div>
+            {% else %}
+                <div class="card text-white bg-secondary mb-3" style="max-width: 25rem; margin-left: 1rem;">
+                    <div class="card-header">
+                        Moderate experience review by {{review.name}}
+                    </div>
+            {% endif %}        
                     <div class="card-body">
-                        <h4 class="card-title">Review by {{review.name}} :</h4>
-                        <h5 class="card-text">Vehicle :{{review.car_make}} {{review.car_model}}</h5>
-                        <h5 class="card-text">Model's year : {{review.car_year}}</h5>
-                        <p class="card-text">{{review.review}}.</p>
+                    {% if review.purchase == True %}
+                        <h6 class="card-text">Vehicle : {{review.car_make}} {{review.car_model}}</h6>
+                        <h6 class="card-text">Model's year : {{review.car_year}}</h6>
+                        <h6 class="card-text">Purchased on : {{review.purchase_date}}</h6>
+                    {% else %}    
+                        <h6 class="card-text"> User didn't purchase a vehicle in this dealership</h6>
+                    {% endif %}    
+                        <p class="card-text">Veredict : {{review.review}}.</p>
                     </div>
                 </div>
             </div>
+            <hr>
         {% endfor %}        
     </div>
     <!-- FOOTER -->

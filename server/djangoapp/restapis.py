@@ -2,6 +2,7 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
+from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions
 
@@ -59,10 +60,16 @@ def get_dealer_reviews_from_cf(url, **kwargs):
     if json_result:
         reviews = json_result["docs"]
         for review in reviews:
-            review = DealerReview(name= review["name"], dealership= review["dealership"], purchase= review["purchase"],
-            purchase_date= review["purchase_date"], car_make= review["car_make"], car_model= review["car_model"],
-            car_year= review["car_year"], sentiment = analyze_review_sentiments(review["review"]))
-            results.append(review)
+            if review["purchase"] == True:
+                review = DealerReview(review = review["review"],name= review["name"], dealership= review["dealership"], purchase= review["purchase"],
+                purchase_date= review["purchase_date"], car_make= review["car_make"], car_model= review["car_model"],
+                car_year= review["car_year"], sentiment = analyze_review_sentiments(review["review"]))
+                results.append(review)
+            else:
+                review = DealerReview(review = review["review"],name= review["name"], dealership= review["dealership"], purchase= review["purchase"],
+                purchase_date= '', car_make= 'None', car_model= '',
+                car_year= 'None', sentiment = analyze_review_sentiments(review["review"]))
+                results.append(review)    
     return results 
 
 
