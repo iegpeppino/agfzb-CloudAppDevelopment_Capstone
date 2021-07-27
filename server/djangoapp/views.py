@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
+from .models import CarModel
 # from .restapis import related methods
-from .restapis import get_dealer_reviews_from_cf, get_dealers_from_cf
+from .restapis import get_dealer_reviews_from_cf, get_dealers_from_cf , post_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -119,3 +120,34 @@ def get_dealer_details(request, dealer_id):
 # def add_review(request, dealer_id):
 # ...
 
+def add_review(request, dealer_id):
+    context = {}
+    user = request.user
+    # GET request to access the available dealerships and cars to review
+    if request.method == "GET":
+        vehicle = CarModel.objects.filter(dealer_id= dealer_id)
+        context["vehicle"] = vehicle
+        context["dealer_id"] = dealer_id
+        return render(request, 'django/add_review.html', context)
+    elif request.method == "POST":
+        # If the user is authenticated it will let him post a review
+        if user.is_authenticated:
+            url = "https://9e850b66.us-south.apigw.appdomain.cloud/api/review"
+            review = {}
+            review["dealership"] = dealer_id
+            review["name"] = user.first_name +' '+ user.last_name
+            review["review"] = request.POST["review_body"]
+            review["purchase"] = request.POST["purchase"]
+            # Data that is only available if a car was purchased
+            if review["purchase"] == True:
+                review["purchase_date"] = request.POST["purchase_date"]
+                vehicle = CarModel.objects.get(pk= request.POST["vehicle"])
+                review["car_make"] = vehicle.carmake.name
+                review["car_model"] = vehicle.name
+                # Convert the value date for years to string 
+                review["car_year"] = vehicle.year.strftime("%Y")
+            json_payload = {}
+            json_payload["review"] = review
+            result = post_request(url, json_payload, dealer_id= dealer_id)
+            context["dealer_id"] = dealer_id
+            return redirect("/djangoapp/dealer/" + str(dealer_id),context)
