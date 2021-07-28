@@ -3,9 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
-from .models import CarDealer, CarModel
+from .models import CarDealer, CarModel, CarMake
 # from .restapis import related methods
-from .restapis import get_dealer_reviews_from_cf, get_dealers_from_cf , post_request
+from .restapis import get_dealer_reviews_from_cf, get_dealers_from_cf , post_request, get_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -135,8 +135,10 @@ def add_review(request, dealer_id):
             review["dealership"] = dealer_id
             review["name"] = user.first_name +' '+ user.last_name
             review["review"] = request.POST["review_body"]
-            review["purchase"] = request.POST.get("purchasecheck")
+            review["purchase"] = request.POST.get("purchasecheck") == "on"
             # Data that is only available if a car was purchased
+            thedealer = get_dealers_from_cf("https://9e850b66.us-south.apigw.appdomain.cloud/api/dealerships")
+            context["thedealer"] = thedealer
             if request.POST.get("purchasecheck") == "on":
                 review["purchase_date"] = request.POST["purchasedate"]
                 car = CarModel.objects.get(pk= request.POST["car"])

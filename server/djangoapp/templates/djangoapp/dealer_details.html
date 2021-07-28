@@ -60,6 +60,9 @@
                 </div>
             </nav>
     <!-- Add reviews as cards -->
+            <div class="container-fluid" >
+                <h3 style="margin:1rem">These are the reviews for the dealership N° {{dealer_id}} : </h3>
+            <div>
             <div class= "row">
                 {% for review in reviews %}
                     <div class= "col-sm-6">
@@ -101,9 +104,13 @@
                     <hr>
                 {% endfor %}        
             </div>
-        </div>    
+        </div>
     </body>
-
+        <div class="container-fluid">
+            <hr>
+            <h3>If you wish to add a review for this dealership  <a href="{% url 'djangoapp:add_review' dealer_id %}">Click Here</a></h3>    
+            <hr>
+        <div>
     <!-- FOOTER -->
     <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark"
         style="background:  linear-gradient(to right, #3f4a4edc, #203953ab);">
