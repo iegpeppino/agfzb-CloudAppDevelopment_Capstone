@@ -140,7 +140,7 @@ def add_review(request, dealer_id):
             thedealer = get_dealers_from_cf("https://9e850b66.us-south.apigw.appdomain.cloud/api/dealerships")
             context["thedealer"] = thedealer
             if request.POST.get("purchasecheck") == "on":
-                review["purchase_date"] = request.POST["purchasedate"]
+                review["purchase_date"] = request.POST["purchase_date"]
                 car = CarModel.objects.get(pk= request.POST["car"])
                 review["car_make"] = car.carmake.name
                 review["car_model"] = car.name
