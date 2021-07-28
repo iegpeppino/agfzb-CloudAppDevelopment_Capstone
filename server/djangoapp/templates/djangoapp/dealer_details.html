@@ -14,14 +14,17 @@
 </head>
 
     <body>
+        <div>
     <!--Add a nav bar here -->
-        <nav class="navbar navbar-expand-lg navbar-dark"
-                style="background:  linear-gradient(to right, #151a1c, #0d1e30);">
-                    <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
+            <nav class="navbar navbar-expand-lg navbar-dark"
+            style="background:  linear-gradient(to right, #151a1c, #0d1e30);">
+            <a class="navbar-brand" href="#" style="padding: 0%;">
+                <img src="{{MEDIA_URL}}/emoji/oldcar.png" alt="..." height="64px">
+              </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent1">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -57,45 +60,56 @@
                 </div>
             </nav>
     <!-- Add reviews as cards -->
-    <div class= "row">
-        {% for review in reviews %}
-            <div class= "col-sm-6">
-            <br>
-            {% if review.sentiment == 'positive' %}
-                <div class="card text-white bg-success mb-3" style="max-width: 25rem; margin-left: 1rem;">
-                    <div class="card-header">
-                        Positive experience review by {{review.name}}
+            <div class= "row">
+                {% for review in reviews %}
+                    <div class= "col-sm-6">
+                    <br>
+                    {% if review.sentiment == 'positive' %}
+                        <div class="card border-success mb-3" style="max-width: 27rem; margin-left: 1rem;">
+                            <div class="card-header border-success" style="padding-left:0.5rem%">
+                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/positive.png"
+                                style="padding-right:0.5rem ;max-height: 2rem">
+                                Positive experience review by {{review.name}}
+                            </div>
+                    {% elif review.sentiment == 'negative' %}
+                        <div class="card border-warning mb-3" style="max-width: 25rem; margin-left: 1rem;">
+                            <div class="card-header border-warning" style="padding-left:0.5rem%">
+                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/negative.png"
+                                style="padding-right:0.5rem ;max-height: 2rem">
+                                Negative experience review by {{review.name}}
+                            </div>
+                    {% else %}
+                        <div class="card border-secondary mb-3" style="max-width: 25rem; margin-left: 1rem;">
+                            <div class="card-header border-secondary" style="padding:0.5rem">
+                                <img class="card-img-left" src="{{MEDIA_URL}}/emoji/neutral.png"
+                                style="padding-right:0.5rem ;max-height: 2rem">
+                                Moderate experience review by {{review.name}}
+                            </div>
+                    {% endif %}        
+                            <div class="card-body">
+                            {% if review.purchase == True %}
+                                <h6 class="card-text">Vehicle : {{review.car_make}} {{review.car_model}}</h6>
+                                <h6 class="card-text">Model's year : {{review.car_year}}</h6>
+                                <h6 class="card-text">Purchased on : {{review.purchase_date}}</h6>
+                            {% else %}    
+                                <h6 class="card-text"> User didn't purchase a vehicle in this dealership</h6>
+                            {% endif %}    
+                                <p class="card-text">Veredict : {{review.review}}.</p>
+                            </div>
+                        </div>
                     </div>
-            {% elif review.sentiment == 'negative' %}
-                <div class="card text-white bg-success mb-3" style="max-width: 25rem; margin-left: 1rem;">
-                    <div class="card-header">
-                        Negative experience review by {{review.name}}
-                    </div>
-            {% else %}
-                <div class="card text-white bg-secondary mb-3" style="max-width: 25rem; margin-left: 1rem;">
-                    <div class="card-header">
-                        Moderate experience review by {{review.name}}
-                    </div>
-            {% endif %}        
-                    <div class="card-body">
-                    {% if review.purchase == True %}
-                        <h6 class="card-text">Vehicle : {{review.car_make}} {{review.car_model}}</h6>
-                        <h6 class="card-text">Model's year : {{review.car_year}}</h6>
-                        <h6 class="card-text">Purchased on : {{review.purchase_date}}</h6>
-                    {% else %}    
-                        <h6 class="card-text"> User didn't purchase a vehicle in this dealership</h6>
-                    {% endif %}    
-                        <p class="card-text">Veredict : {{review.review}}.</p>
-                    </div>
-                </div>
+                    <hr>
+                {% endfor %}        
             </div>
-            <hr>
-        {% endfor %}        
-    </div>
+        </div>    
+    </body>
+
     <!-- FOOTER -->
     <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark"
         style="background:  linear-gradient(to right, #3f4a4edc, #203953ab);">
-            <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
+            <a class="navbar-brand" href="#" style="padding: 0%;">
+                <img src="{{MEDIA_URL}}/emoji/oldcar.png" alt="..." height="64px">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -114,6 +128,5 @@
                 </ul>
             </div>
         </nav>
-    </body>
-
+    
 </html>

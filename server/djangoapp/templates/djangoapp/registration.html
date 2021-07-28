@@ -7,46 +7,48 @@
 </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark"
-        style="background:  linear-gradient(to right, #151a1c, #0d1e30);">
-            <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
-           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-           </button>
-           <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-               <ul class="navbar-nav mr-auto">
-                   <li class="nav-item">
-                       <a class="btn btn-link" href="{% url 'djangoapp:index' %}" style="color: #fff;">Home</a>
-                   </li>
-                   <li class="nav-item">
-                       <a class="btn btn-link" href="{% url 'djangoapp:about_us' %}" style="color: #fff">About Us</a>
-                   </li>
-                   <li class="nav-item"></a>
-                       <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}" style="color: #fff">Contact Us</a>
-                   </li>
-               </ul>
-               <ul class = "navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a class = "btn btn-link" href = "#">({{ user.username }})</a>
-                        <a class = "btn btn-link" href = "{% url 'djangoapp:logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <form class = "form-inline" action = "{% url 'djangoapp:login' %}" method = "post">
-                            {% csrf_token %}
-                            <div class = "input-group">
-                                <input type = "text" class = "form-control" placeholder = "username" name = "username">
-                                <input type = "password" class = "form-control" placeholder = "password" name = "psw">
-                                <button class = "btn btn-primary" type = "submit">Login</button>
-                                <a class = "btn btn-link" href = "{% url 'djangoapp:registration' %}">Sign Up</a>
-                            </div>
-                        </form>
-                    </li>
-                    {% endif %}
-               </ul>
-           </div>
-       </nav>
+            style="background:  linear-gradient(to right, #151a1c, #0d1e30);">
+            <a class="navbar-brand" href="#" style="padding: 0%;">
+                <img src="{{MEDIA_URL}}/emoji/oldcar.png" alt="..." height="64px">
+              </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="btn btn-link" href="{% url 'djangoapp:index' %}" style="color: #fff;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-link" href="{% url 'djangoapp:about_us' %}" style="color: #fff">About Us</a>
+                        </li>
+                        <li class="nav-item"></a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:contact_us' %}" style="color: #fff">Contact Us</a>
+                        </li>
+                    </ul>
+                    <ul class = "navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a class = "btn btn-link" href = "#">({{ user.username }})</a>
+                                <a class = "btn btn-link" href = "{% url 'djangoapp:logout' %}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <form class = "form-inline" action = "{% url 'djangoapp:login' %}" method = "post">
+                                    {% csrf_token %}
+                                    <div class = "input-group">
+                                        <input type = "text" class = "form-control" placeholder = "username" name = "username">
+                                        <input type = "password" class = "form-control" placeholder = "password" name = "psw">
+                                        <button class = "btn btn-primary" type = "submit">Login</button>
+                                        <a class = "btn btn-link" href = "{% url 'djangoapp:registration' %}">Sign Up</a>
+                                    </div>
+                                </form>
+                            </li>
+                            {% endif %}
+                    </ul>
+                </div>
+            </nav>>
         <br>
         <div class="container-fluid">
             <form action = "{% url 'djangoapp:registration' %}" method = "post">
@@ -77,7 +79,9 @@
     <!-- FOOTER -->
         <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark"
         style="background:  linear-gradient(to right, #3f4a4edc, #203953ab);">
-            <span class="navbar-brand" style="padding: 8px;">Car Dealer</span>
+            <a class="navbar-brand" href="#" style="padding: 0%;">
+                <img src="{{MEDIA_URL}}/emoji/oldcar.png" alt="..." height="64px">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
