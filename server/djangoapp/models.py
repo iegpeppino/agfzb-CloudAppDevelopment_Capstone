@@ -43,13 +43,11 @@ class CarModel(models.Model):
         choices= TYPE_CHOICES,
         default= 'sedan'
     )
-    isused = models.BooleanField(default= False)
     carmake = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     def __str__(self):
         return "Name: " + self.name + "," + \
                "Year: " + str(self.year) + "," + \
-               "Type: " + self.type + "," + \
-                "Previously owned ? " + str(self.isused)
+               "Type: " + self.type
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 class CarDealer:
