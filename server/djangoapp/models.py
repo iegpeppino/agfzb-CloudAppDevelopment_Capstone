@@ -49,7 +49,7 @@ class CarModel(models.Model):
         return "Name: " + self.name + "," + \
                "Year: " + str(self.year) + "," + \
                "Type: " + self.type + "," + \
-                "Previously owned ? " + self.isused
+                "Previously owned ? " + str(self.isused)
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 class CarDealer:
