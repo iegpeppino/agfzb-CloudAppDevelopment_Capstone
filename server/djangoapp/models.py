@@ -47,7 +47,7 @@ class CarModel(models.Model):
     carmake = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     def __str__(self):
         return "Name: " + self.name + "," + \
-               "Year: " + self.year + "," + \
+               "Year: " + str(self.year) + "," + \
                "Type: " + self.type + "," + \
                 "Previously owned ? " + self.isused
 
