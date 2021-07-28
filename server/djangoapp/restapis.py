@@ -36,7 +36,7 @@ def post_request(url,json_payload,**kwargs):
         # If any error occurs
         print("Network exception occurred")
     status_code = response.status_code
-    print("With status {} ",format(status_code))
+    print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
     return json_data
     
