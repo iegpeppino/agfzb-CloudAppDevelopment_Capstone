@@ -15,9 +15,9 @@ class CarMake(models.Model):
     country = CountryField()
 
     def __str__(self):
-        return "Name: " + self.name + "," + \
-               "Description: " + self.description + "," + \
-                "Country:" + self.country
+        return "Name: " + self.name + ",  " + \
+               "Description: " + self.description + ", " + \
+                "Country:" + str(self.country)
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
@@ -46,9 +46,9 @@ class CarModel(models.Model):
     isused = models.BooleanField(default= False)
     carmake = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     def __str__(self):
-        return "Name: " + self.name + "," + \
-               "Year: " + str(self.year) + "," + \
-               "Type: " + self.type + "," + \
+        return "Name: " + self.name + ",  "  \
+               "Year: " + str(self.year) + ",  " + \
+               "Type: " + self.type + ",  " + \
                 "Is used : Yes" if self.isused else "Is used : No"
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
